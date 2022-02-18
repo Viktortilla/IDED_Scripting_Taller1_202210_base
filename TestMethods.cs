@@ -48,7 +48,10 @@ namespace TestProject1
                     result.Push(-1);
                 }
             }
-
+            for (int i= 0; i <= l_temp.Count - 1; i++)
+            {
+                sourceStack.Push(l_temp[i]);
+            }
 
             return result;
         }
