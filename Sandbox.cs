@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TestProject1
 {
@@ -6,8 +10,31 @@ namespace TestProject1
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello world");
-            Console.WriteLine("Here you can write console prints to test your implementation outside the testing environment");
+            //prueba punto 1
+            
+            Stack<int> prueba1 = new Stack<int>();
+
+
+            prueba1.Push(26);
+            prueba1.Push(3);
+            prueba1.Push(6);
+            prueba1.Push(5);
+            
+            
+            Stack<int> sln_p1 = TestMethods.GetNextGreaterValue(prueba1);
+
+
+            Console.WriteLine("|");
+            foreach (object obj in sln_p1)
+            {
+                Console.Write(obj + "|");
+            }
+            Console.WriteLine("");
+            
+
+            //prueva punto 2
+
+            
         }
     }
 }

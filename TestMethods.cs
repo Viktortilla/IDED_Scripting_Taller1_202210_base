@@ -15,7 +15,40 @@ namespace TestProject1
 
         internal static Stack<int> GetNextGreaterValue(Stack<int> sourceStack)
         {
-            Stack<int> result = null;
+            Stack<int> result = new Stack<int>();
+            
+
+            List<int> l_temp = new List<int>();
+            int a = sourceStack.Count - 1;
+            for (int i = 0; i <= a; i++)
+            {
+                l_temp.Add(sourceStack.Peek());
+                sourceStack.Pop();
+            }
+            l_temp.Reverse();
+
+            int mayor;
+
+            for (int i = 0; i <= l_temp.Count - 1; i++)
+            {
+                mayor = 0;
+                for (int j = i; j <= l_temp.Count - 1; j++)
+                {
+                    if (mayor < l_temp[j])
+                    {
+                        mayor = l_temp[j];
+                    }
+                }
+                if (l_temp[i] < mayor)
+                {
+                    result.Push(mayor);
+                }
+                else
+                {
+                    result.Push(-1);
+                }
+            }
+
 
             return result;
         }
