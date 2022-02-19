@@ -147,7 +147,56 @@ namespace TestProject1
 
         internal static Queue<Ticket>[] ClassifyTickets(List<Ticket> sourceList)
         {
-            Queue<Ticket>[] result = null;
+            Queue<Ticket>[] result = new Queue<Ticket>[3];
+            result[0] = new Queue<Ticket>();
+            result[1] = new Queue<Ticket>();
+            result[2] = new Queue<Ticket>();
+            List<Ticket> l_ordenada = new List<Ticket>();
+            List<int> l_turnos = new List<int>();
+            for(int i = 0; i <= sourceList.Count-1; i++)
+            {
+                l_turnos.Add(sourceList[i].Turn);
+            }
+            l_turnos.Sort();
+            int a = l_turnos.Count - 1;
+
+            int cont1 = 0;
+
+            for (int i = 0; i <= a; i++)
+            {
+                if (cont1 != l_turnos[i])
+                {
+                    for (int j = 0; j <= a; j++)
+                    {
+                        if (l_turnos[i] == sourceList[j].Turn)
+                        {
+                            l_ordenada.Add(sourceList[j]);
+                        }
+                    }
+                    cont1 = l_turnos[i];
+                }
+
+                
+            }
+
+            
+
+            for (int i = 0; i<= l_ordenada.Count - 1; i++)
+            {
+                if (l_ordenada[i].RequestType == Ticket.ERequestType.Payment)
+                {
+                    result[0].Enqueue(l_ordenada[i]);
+                }
+                else if (l_ordenada[i].RequestType == Ticket.ERequestType.Subscription)
+                {
+                    result[1].Enqueue(l_ordenada[i]);
+                }
+                else if (l_ordenada[i].RequestType == Ticket.ERequestType.Cancellation)
+                {
+                    result[2].Enqueue(l_ordenada[i]);
+                }
+            }
+
 
             return result;
         }
@@ -155,6 +204,16 @@ namespace TestProject1
         internal static bool AddNewTicket(Queue<Ticket> targetQueue, Ticket ticket)
         {
             bool result = false;
+
+            if (targetQueue.Peek().RequestType == ticket.RequestType)
+            {
+                if (ticket.Turn > 0 && ticket.Turn < 100)
+                {
+                    targetQueue.Enqueue(ticket);
+                    result = true;
+                }
+                
+            }
 
             return result;
         }        
